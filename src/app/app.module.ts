@@ -1,19 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ApplicationRef } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 
+/**
+ * The HTTP service is not added by default
+ * so we need to import it.
+ */
+import { HttpModule } from '@angular/http';
+
+/**
+ * Import the PokedexService
+ */
+import { PokedexService } from './pokedex.service';
+import { CapitalizePipe } from './capitalize.pipe';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CapitalizePipe
   ],
   imports: [
     BrowserModule,
     CommonModule,
-    FormsModule
+    FormsModule,
+    /**
+     * Register the HTTP service.
+     */
+    HttpModule
   ],
-  providers: [],
+  /**
+   * Register the service as a
+   * provider.
+   */
+  providers: [PokedexService],
   entryComponents: [AppComponent],
   bootstrap: [AppComponent]
 })
